@@ -1,0 +1,54 @@
+{
+  "name": "StageTwo",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "better-npm-run start-dev",
+    "prod": "better-npm-run build-prod"
+  },
+  "betterScripts": {
+    "build-prod": {
+      "command": "webpack",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "production"
+      }
+    },
+    "start-dev": {
+      "command": "webpack-dev-server",
+      "env": {
+        "NODE_PATH": "./src",
+        "NODE_ENV": "development",
+        "PORT": 3000
+      }
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "better-npm-run": "^0.1.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.4.2",
+    "doiuse": "^4.2.0",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-scss": "^2.0.0",
+    "pug": "^2.0.4",
+    "pug-loader": "^2.4.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.3",
+    "stylelint": "^13.1.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-webpack-plugin": "^1.2.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
