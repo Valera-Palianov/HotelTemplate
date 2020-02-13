@@ -1,0 +1,33 @@
+$primary-color: red;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 8px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1,
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  color: $primary-color;
+  font-family: LatoBlack, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  padding: 1rem;
+  font-size: 1.67rem;
+}
