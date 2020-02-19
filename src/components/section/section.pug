@@ -1,10 +1,15 @@
 mixin section(options)
 	- var classes = ''
 	if options
+		if options.columns
+			- classes += ' section_grid section_columns_'+options.columns
 		if options.bg == 'removed'
-			- classes = 'section_bg-removed'
+			- classes += ' section_bg-removed'
 
 	div.section(class=classes)
 		div.section__container
-			div.section__column
-				block
+			block
+
+mixin section__column()
+	div.section__column
+			block

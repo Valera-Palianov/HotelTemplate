@@ -1,8 +1,12 @@
 extends ../base/base
 
 include ../../components/colorExamples/colorExamples
+include ../../components/typeExamples/typeExamples
 include ../../components/section/section
 
 block main
-	+section()
-		+colorExamples()
+	+section({columns:2})
+		+section__column()
+			+colorExamples()
+		+section__column()
+			+typeExamples()

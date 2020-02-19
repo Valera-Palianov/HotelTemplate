@@ -1,0 +1,36 @@
+@import '../../theme/variables.scss';
+
+.type-examples {
+	
+	.type-examples__item:not(:last-child) {
+		margin-bottom:50px;
+	}
+
+	&__item {
+		display:flex;
+		.type-examples__value {
+			margin-left:30px;
+		}
+	}
+
+	&__name {
+		text-align: right;
+		color: $dark-shade-25;
+		width: 37px;
+
+		&_h1 {
+			font-size: $h1-size;
+			line-height: $h1-line-height;
+		}
+
+		&_h2 {
+			font-size: $h2-size;
+			line-height: $h2-line-height;
+		}
+
+		&_h3 {
+			font-size: $h3-size;
+			line-height: $h3-line-height;
+		}
+	}
+}

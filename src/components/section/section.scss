@@ -6,6 +6,19 @@
 	&_bg-removed {
 		background:none;
 	}
+	&_grid {
+		.section__container {
+			display:grid;
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&_columns_2 {
+		.section__container {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
 	.section__container {
 		width: $container-width;
 		margin: 0 auto;

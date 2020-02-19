@@ -20,6 +20,14 @@ $dark-shade-5: fade-out($dark-shade, 0.95);
 $purple: #bc9cff;
 $green: #6fcf97;
 
+$h1-size: 24px;
+$h2-size: 19px;
+$h3-size: 12px;
+
+$h1-line-height: 30px;
+$h2-line-height: 24px;
+$h3-line-height: 15px;
+
 /***** Mixins *****/
 @mixin media-breakpoint-up($width) {
   @media (min-width: $width + 1) {
