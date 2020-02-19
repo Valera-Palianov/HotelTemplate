@@ -1,0 +1,14 @@
+@import '../../theme/variables.scss';
+
+.section {
+	background-color: $content-bg;
+	padding: 35px 0;
+	&_bg-removed {
+		background:none;
+	}
+	.section__container {
+		width: $container-width;
+		margin: 0 auto;
+		background: none;
+	}
+}

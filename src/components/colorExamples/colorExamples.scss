@@ -1,0 +1,36 @@
+@import '../../theme/variables.scss';
+
+.color-examples {
+	
+	.color-examples__item:not(:last-child) {
+		margin-bottom:20px;
+	}
+
+	&__item {
+		display:flex;
+		align-items:center;
+	}
+
+	&__name {
+		font-family: 'OpenSans Bold'
+	}
+
+	&__info {
+		margin-left: 40px;
+		font-size:19px;
+	}
+
+	&__tile {
+		width: 70px;
+	  	height: 70px;
+	  	border-radius: 6px;
+
+		&_dark-shade{background-color: $dark-shade}
+		&_dark-shade-75 {background-color: $dark-shade-75}
+		&_dark-shade-50 {background-color: $dark-shade-50}
+		&_dark-shade-25 {background-color: $dark-shade-25}
+		&_dark-shade-5 {background-color: $dark-shade-5}
+		&_purple {background-color: $purple}
+		&_green {background-color: $green}
+	}
+}

@@ -1,0 +1,42 @@
+mixin __item(options)
+	if options.className
+		- var colorName, colorCode
+		case options.className
+			when 'dark-shade'
+				-
+					colorName = 'Dark Shade 100%'
+					colorCode = '#1F2041'
+			when 'dark-shade-75'
+				-
+					colorName = 'Dark Shade 75%'
+					colorCode = '#1F2041'
+			when 'dark-shade-50'
+				-
+					colorName = 'Dark Shade 50%'
+					colorCode = '#1F2041'
+			when 'dark-shade-25'
+				-
+					colorName = 'Dark Shade 25%'
+					colorCode = '#1F2041'
+			when 'dark-shade-5'
+				-
+					colorName = 'Dark Shade 5%'
+					colorCode = '#1F2041'
+			when 'purple'
+				-
+					colorName = 'Purple'
+					colorCode = '#BC9CFF'
+			when 'green'
+				-
+					colorName = 'Green'
+					colorCode = '#6FCF97'
+			default
+				-
+					colorName = 'Цвет не определен'
+					colorCode = ''
+
+		div.color-examples__item
+			div(class="color-examples__tile color-examples__tile_"+options.className)
+			div.color-examples__info
+				div.color-examples__name= colorName
+				div.color-examples__code= colorCode

@@ -1,0 +1,40 @@
+/***** Variables *****/
+$xxs: 320px;
+$xs: 575px;
+$s: 767px;
+$m: 991px;
+$l: 1199px;
+$xl: 1440px;
+
+$container-width: 1140px;
+
+$page-bg: #f4f4f6;
+$content-bg: white;
+
+$dark-shade: #1f2041;
+$dark-shade-75: fade-out($dark-shade, 0.25);
+$dark-shade-50: fade-out($dark-shade, 0.5);
+$dark-shade-25: fade-out($dark-shade, 0.75);
+$dark-shade-5: fade-out($dark-shade, 0.95);
+
+$purple: #bc9cff;
+$green: #6fcf97;
+
+/***** Mixins *****/
+@mixin media-breakpoint-up($width) {
+  @media (min-width: $width + 1) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($min-width, $max-width) {
+  @media (min-width: $min-width + 1) and (max-width: $max-width) {
+    @content;
+  }
+}

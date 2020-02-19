@@ -1,0 +1,7 @@
+include ./__item/__item
+
+mixin colorExamples()
+	- var colors = ['dark-shade', 'dark-shade-75', 'dark-shade-50', 'dark-shade-25', 'dark-shade-5', 'purple', 'green']
+	div.color-examples
+		each color in colors
+			+__item({className: color})

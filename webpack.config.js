@@ -9,8 +9,10 @@ const postcssSCSS = require('postcss-scss') //Плагин для PostCSS, по�
 const autoprefixer = require('autoprefixer') //Автоматически добавляет префиксы для свойств Css
 const doiuse = require('doiuse') //Инофрмирует о несовместимости тех или иных CSS свойств с браузерами
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin') //Сжимает JS
-const StyleLintPlugin = require('stylelint-webpack-plugin') //Более строгая валидация CSS
 
+/*Так как приложение у нас многостраничное, а так же потому, что мы используем html-webpack-plugin, нам нужно встроить
+наш JS скрипт в каждую из страниц. Но html-webpack-plugin позволяет указать только одну за раз. Поэтому мы ищем все наши 
+HTML файлы (в данном случае в формате pug), загоняем их в массив, и создаем по экземпляру html-webpack-plugin на каждую*/
 const pages = []
 fs
 	.readdirSync(__dirname + '/src/pages')
@@ -37,7 +39,7 @@ const htmlPlugins = pages.map(fileName => new HtmlWebpackPlugin({
 }))
 
 const confMode = process.env.NODE_ENV
-const confPlugins = [new CleanWebpackPlugin(), new StyleLintPlugin()].concat(htmlPlugins)
+const confPlugins = [new CleanWebpackPlugin()].concat(htmlPlugins)
 const confOptimization = {}
 const confDevServer = {}
 const confModule = {
@@ -55,21 +57,25 @@ const confModule = {
 		},
 		{
 			test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-			loader: 'file-loader?name=[path][name].[ext]'
+			loader: 'file-loader',
+			options: {
+		        name: '[path][name].[ext]?[hash]',
+		        context: 'src'
+		    }
 		}
 	]
 }
 const confOutput = {
-	filename: '[name].bundle.js',
+	filename: 'js/[name].bundle.js',
 	path: __dirname + "/dist",
-	chunkFilename: '[name].bundle.js',
+	chunkFilename: 'js/[name].bundle.js',
 	publicPath: '/'
 }
 let confDevtool = false
 
 if(process.env.NODE_ENV === "production") {
 	confOutput.publicPath = './'
-	confPlugins.push(new MiniCssExtractPlugin())
+	confPlugins.push(new MiniCssExtractPlugin({filename: 'style/[name].css',}))
 	confOptimization.minimizer = [
 		new UglifyJsPlugin({
 			uglifyOptions: {
