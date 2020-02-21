@@ -1,17 +1,18 @@
+@import '~normalize.css';
 @import './variables.scss';
 @font-face {
     font-family: 'Montserrat Regular';
-    src: url("/fonts/Montserrat/Montserrat-Regular.ttf");
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'Montserrat Bold';
-    src: url("/fonts/Montserrat/Montserrat-Bold.ttf");
+    src: url(../fonts/Montserrat/Montserrat-Bold.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'OpenSans Bold';
-    src: url("/fonts/Open_Sans/OpenSans-Bold.ttf");
+    src: url(../fonts/OpenSans/OpenSans-Bold.ttf) format('truetype');
 }
 
 body {

@@ -1,0 +1,28 @@
+extends ../base/base
+
+include ../../components/colorExamples/colorExamples
+include ../../components/typeExamples/typeExamples
+include ../../components/section/section
+include ../../components/roomSelector/roomSelector
+
+block title
+	| UI Kit
+
+block main
+	+section({columns:2})
+		+section__column()
+			+colorExamples()
+		+section__column()
+			+typeExamples()
+	+section({columns:'auto', bg: 'removed'})
+		+section__column()
+			+roomSelector()
+		+section__column()
+			+roomSelector()
+		+section__column()
+			+roomSelector()
+		+section__column()
+			+roomSelector()
+		+section__column()
+			+roomSelector()
+	+section({columns:3})

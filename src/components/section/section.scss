@@ -9,8 +9,13 @@
 	&_grid {
 		.section__container {
 			display:grid;
+			grid-gap:40px;
 			grid-template-columns: 1fr;
 		}
+	}
+
+	&__column > .card:not(:last-child) {
+		margin-bottom:40px;
 	}
 
 	&_columns_2 {
@@ -18,9 +23,20 @@
 			grid-template-columns: 1fr 1fr;
 		}
 	}
+	&_columns_3 {
+		.section__container {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	&_columns_auto {
+		.section__container {
+			grid-template-columns: repeat(auto-fill, minmax($xxs,1fr));
+		}
+	}
 
 	.section__container {
-		width: $container-width;
+		max-width: $container-width;
+		width:100%;
 		margin: 0 auto;
 		background: none;
 	}

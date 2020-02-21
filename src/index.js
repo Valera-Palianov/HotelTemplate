@@ -1,7 +1,4 @@
 import './theme/general.scss'
-import './fonts/Montserrat/Montserrat-Regular.ttf'
-import './fonts/Montserrat/Montserrat-Bold.ttf'
-import './fonts/Open_Sans/OpenSans-Bold.ttf'
 
 function requireAll(requireContext) {
     return requireContext.keys().map(requireContext);
