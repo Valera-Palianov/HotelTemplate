@@ -1,15 +1,46 @@
-mixin section(options)
-	- var classes = ''
-	if options
-		if options.columns
-			- classes += ' section_grid section_columns_'+options.columns
-		if options.bg == 'removed'
-			- classes += ' section_bg-removed'
+mixin section(options = {})
+	-
+		let classes = ''
+		let classBase = 'section'
+
+		classes += options.fullWidth ? ' '+classBase+'_full-width' : ''
+		classes += options.framed ? ' '+classBase+'_framed' : ''
+		classes += options.gap ? ' '+classBase+'_gap_'+options.gap : ''
+		classes += options.grid ? ' '+classBase+'_grid' : ''
+		classes += options.removeBg ? ' '+classBase+'_remove-bg' : ''
 
 	div.section(class=classes)
-		div.section__container
-			block
+		block
 
-mixin section__column()
-	div.section__column
-			block
+mixin section__row(options = {})
+	-
+		let classes = ''
+		let classBase = 'section__row'
+
+		classes += options.fullWidth ? ' '+classBase+'_full-width' : ''
+		classes += options.margin ? ' '+classBase+'_margin_'+options.margin : ''
+		classes += options.gap ? ' '+classBase+'_gap_'+options.gap : ''
+		classes += options.grid ? ' '+classBase+'_grid' : ''
+		classes += options.template ? ' '+classBase+'_template_'+options.template : ''
+
+	div.section__row(class=classes)
+		block
+
+mixin section__column(options = {})
+	-
+		let classes = ''
+		let classBase = 'section__column'
+		classes += options.gap ? ' '+classBase+'_gap_'+options.gap : ''
+
+	div.section__column(class=classes)
+		block
+
+mixin section__item(options = {})
+	-
+		let classes = ''
+		let classBase = 'section__item'
+
+		classes += options.margin ? ' '+classBase+'_margin_'+options.margin : ''
+
+	div.section__item(class=classes)
+		block

@@ -4,26 +4,51 @@ include ../../components/colorExamples/colorExamples
 include ../../components/typeExamples/typeExamples
 include ../../components/section/section
 include ../../components/roomSelector/roomSelector
+include ../../components/textField/textField
 
 block title
 	| UI Kit
 
 block main
-	+section({columns:2})
-		+section__column()
-			+colorExamples()
-		+section__column()
-			+typeExamples()
-	+section({columns:'auto', bg: 'removed'})
-		+section__column()
-			+roomSelector()
-		+section__column()
-			+roomSelector()
-		+section__column()
-			+roomSelector()
-		+section__column()
-			+roomSelector()
-		+section__column()
-			+roomSelector()
-	+section({columns:3})
-		+section__column()
+	+section({fullWidth: true, framed: true})
+		+section__row({grid:true, template: 'two-columns'})
+			+section__column()
+				+section__item()
+					+colorExamples()
+			+section__column()
+				+section__item()
+					+typeExamples()
+	+section({removeBg: true})
+		+section__row({grid:true, template: 'auto'})
+			+section__column()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()
+			+section__column()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()
+	+section({fullWidth: true, framed: true})
+		+section__row({grid:true, template: 'three-columns'})
+			+section__column()
+				+section__item()
+					+textField({
+						type: 'email',
+						placeholder: 'Email',
+						label: 'Text Field',
+						additionalLabel: 'default'
+					})
+				+section__item()
+					+textField({
+						type: 'text',
+						value: 'This is pretty awesome',
+						label: 'Text field',
+						additionalLabel: 'hover/focus',
+						classes: 'focus'
+					})

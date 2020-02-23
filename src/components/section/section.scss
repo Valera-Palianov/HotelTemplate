@@ -1,43 +1,107 @@
 @import '../../theme/variables.scss';
 
+$gap: 20px;
+$gap-small: $gap / 2;
+$gap-large: $gap * 2;
+
 .section {
 	background-color: $content-bg;
+	box-sizing:border-box;
 	padding: 35px 0;
-	&_bg-removed {
-		background:none;
-	}
-	&_grid {
-		.section__container {
-			display:grid;
-			grid-gap:40px;
-			grid-template-columns: 1fr;
-		}
-	}
+	max-width: $container-width;
+	width:100%;
+	margin-left: auto;
+	margin-right: auto;
+	background: $content-bg;
 
-	&__column > .card:not(:last-child) {
-		margin-bottom:40px;
-	}
-
-	&_columns_2 {
-		.section__container {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-	&_columns_3 {
-		.section__container {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-	}
-	&_columns_auto {
-		.section__container {
-			grid-template-columns: repeat(auto-fill, minmax($xxs,1fr));
-		}
-	}
-
-	.section__container {
-		max-width: $container-width;
-		width:100%;
-		margin: 0 auto;
+	&.section_remove-bg {
 		background: none;
+	}
+
+	&.section_full-width {
+		max-width: 100%;
+		&.section_framed > .section__row {
+			max-width: $container-width;
+			margin-left: auto;
+			margin-right: auto;
+
+			&.section__row_full-width {
+				max-width: 100%;
+			}
+		}
+	}
+
+	&.section_gap {
+		&_large > .section__row:not(:last-child) {margin-bottom: $gap-large;}
+		&_small > .section__row:not(:last-child){margin-bottom: $gap-small;}
+		&_collapse > .section__row:not(:last-child) {margin-bottom: 0;}
+	}
+
+	& > .section__row {
+		&:not(:last-child), &.section__row_margin_default:not(:last-child) {
+			margin-bottom: $gap;
+		}
+		&.section__row_margin_large:not(:last-child) {
+			margin-bottom: $gap-large;
+		}
+		&.section__row_margin_small:not(:last-child) {
+			margin-bottom: $gap-small;
+		}
+		&.section__row_margin_collapse:not(:last-child) {
+			margin-bottom: 0;
+		}
+
+		&.section__row_grid {
+			display:grid;
+			grid-gap: $gap;
+			grid-template-columns: 1fr;
+
+			&.section__row_gap {
+				&_large {
+					grid-gap: $gap-large;
+				}
+				&_small {
+					grid-gap: $gap-large;
+				}
+				&_collapse {
+					grid-gap: 0;
+				}
+			}
+			&.section__row_template {
+				&_two-columns {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				&_three-columns {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				&_auto {
+					grid-template-columns: repeat(auto-fill, minmax($xxs,1fr));
+				}
+			}
+		}
+
+		& > .section__column {
+			&.section__column_gap {
+				&_large > .section__item:not(:last-child) {margin-bottom: $gap-large;}
+				&_small > .section__item:not(:last-child){margin-bottom: $gap-small;}
+				&_collapse > .section__item:not(:last-child){margin-bottom: 0;}
+			}
+
+			& > .section__item {
+				&:not(:last-child), &.section__item_margin_default:not(:last-child) {
+					margin-bottom: $gap;
+				}
+				&.section__item_margin_large:not(:last-child) {
+					margin-bottom: $gap-large;
+				}
+				&.section__item_margin_small:not(:last-child) {
+					margin-bottom: $gap-small;
+				}
+				&.section__item_margin_collapse:not(:last-child) {
+					margin-bottom: 0;
+				}
+			}
+
+		}
 	}
 }

@@ -54,3 +54,24 @@ h3 {
 	line-height: $h3-line-height;
 	text-transform: uppercase;
 }
+
+input {
+	width: 100%;
+	background: #FFFFFF;
+	border: 1px solid $dark-shade-25;
+	box-sizing: border-box;
+	border-radius: 4px;
+	padding: 13px 15px;
+	font-size: 14px;
+	line-height: 18px;
+	color: $dark-shade-50;
+	transition: 0.2s;
+	&:focus, &:hover, &.focus {
+		outline:none;
+		color: $dark-shade-75;
+		border-color: $dark-shade-75;
+	}
+	&::placeholder {
+		color: $dark-shade-25;
+	}
+}

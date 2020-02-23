@@ -1,0 +1,6 @@
+include ../label/label
+
+mixin textField(options = {})
+	div.textField
+		+label(options.label, options.additionalLabel)
+			input(type=options.type, placeholder=options.placeholder, class=options.classes, value=options.value)

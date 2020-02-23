@@ -1,0 +1,15 @@
+@import '../../theme/variables.scss';
+
+.label {
+	&__subheader {
+		font-size: 12px;
+		line-height: 15px;
+		text-transform: uppercase;
+		color: $dark-shade-25;
+	}
+	&__holder {
+		display:flex;
+		justify-content: space-between;
+		margin-bottom: 5px;
+	}
+}
