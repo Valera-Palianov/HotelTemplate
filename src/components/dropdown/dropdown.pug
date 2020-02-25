@@ -1,0 +1,19 @@
+include ../label/label
+
+mixin dropdown(options = {})
+	+label(options.label, options.additionalLabel)
+		div.dropdown
+			div.dropdown__wrap.input-like
+				div.dropdown__head
+					div.dropdown__value Some Text
+					div.dropdown__icon
+						i.fas.fa-chevron-down
+				div.dropdown__body
+					div Content
+					div Content
+					div Content
+						
+
+mixin dropdown__item()
+	div.dropdown__item
+		block

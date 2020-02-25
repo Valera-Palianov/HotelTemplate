@@ -27,6 +27,8 @@ $h1-line-height: 30px;
 $h2-line-height: 24px;
 $h3-line-height: 15px;
 
+$input-padding: 13px 15px;
+
 @mixin media-breakpoint-up($width) {
   @media (min-width: $width + 1) {
     @content;

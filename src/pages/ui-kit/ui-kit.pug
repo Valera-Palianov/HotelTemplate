@@ -5,6 +5,7 @@ include ../../components/typeExamples/typeExamples
 include ../../components/section/section
 include ../../components/roomSelector/roomSelector
 include ../../components/textField/textField
+include ../../components/dropdown/dropdown
 
 block title
 	| UI Kit
@@ -51,4 +52,19 @@ block main
 						label: 'Text field',
 						additionalLabel: 'hover/focus',
 						classes: 'focus'
+					})
+				+section__item()
+					+dropdown({
+						label: 'Dropdown',
+						additionalLabel: 'default',
+					})
+				+section__item()
+					+dropdown({
+						label: 'Dropdown',
+						additionalLabel: 'default',
+					})
+				+section__item()
+					+dropdown({
+						label: 'Dropdown',
+						additionalLabel: 'default',
 					})

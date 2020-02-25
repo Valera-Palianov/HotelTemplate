@@ -1,4 +1,6 @@
 import './theme/general.scss'
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
 
 function requireAll(requireContext) {
     return requireContext.keys().map(requireContext);
