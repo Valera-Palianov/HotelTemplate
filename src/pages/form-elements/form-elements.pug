@@ -1,0 +1,47 @@
+extends ../base/base
+
+include ../../components/section/section
+include ../../components/textField/textField
+include ../../components/dropdown/dropdown
+
+block title
+	| Form Elements
+
+block main
+	+section({fullWidth: true, framed: true})
+		+section__row({grid:true, template: 'three-columns'})
+			+section__column()
+				+section__item()
+					+textField({
+						type: 'email',
+						placeholder: 'Email',
+						label: 'Text Field',
+						additionalLabel: 'default'
+					})
+				+section__item()
+					+textField({
+						type: 'text',
+						value: 'This is pretty awesome',
+						label: 'Text field',
+						additionalLabel: 'hover/focus',
+						classes: 'focus'
+					})
+				+section__item()
+					+dropdown({
+						label: 'Dropdown',
+						additionalLabel: 'default',
+					})
+				+section__item()
+					+textField({
+						type: 'email',
+						placeholder: 'Email',
+						label: 'Text Field',
+						additionalLabel: 'default'
+					})
+				+section__item()
+					+textField({
+						type: 'email',
+						placeholder: 'Email',
+						label: 'Text Field',
+						additionalLabel: 'default'
+					})

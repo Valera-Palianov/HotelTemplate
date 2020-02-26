@@ -2,17 +2,17 @@
 @import './variables.scss';
 @font-face {
     font-family: 'Montserrat Regular';
-    src: url(../fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
+    src: url(./fonts/Montserrat/Montserrat-Regular.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'Montserrat Bold';
-    src: url(../fonts/Montserrat/Montserrat-Bold.ttf) format('truetype');
+    src: url(./fonts/Montserrat/Montserrat-Bold.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'OpenSans Bold';
-    src: url(../fonts/OpenSans/OpenSans-Bold.ttf) format('truetype');
+    src: url(./fonts/OpenSans/OpenSans-Bold.ttf) format('truetype');
 }
 
 body {
@@ -55,7 +55,7 @@ h3 {
 	text-transform: uppercase;
 }
 
-input, .input-like {
+input:not([type='number']), .input-like {
 	width: 100%;
 	background: #FFFFFF;
 	border: 1px solid $dark-shade-25;
@@ -75,6 +75,6 @@ input, .input-like {
 	}
 }
 
-input {
+input:not([type='number']) {
 	padding: $input-padding;
 }

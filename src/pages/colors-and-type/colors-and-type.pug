@@ -1,0 +1,18 @@
+extends ../base/base
+
+include ../../components/colorExamples/colorExamples
+include ../../components/typeExamples/typeExamples
+include ../../components/section/section
+
+block title
+	| Colors And Type
+
+block main
+	+section({fullWidth: true, framed: true})
+		+section__row({grid:true, template: 'two-columns'})
+			+section__column()
+				+section__item()
+					+colorExamples()
+			+section__column()
+				+section__item()
+					+typeExamples()

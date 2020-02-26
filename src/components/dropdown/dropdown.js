@@ -1,3 +1,6 @@
+import '../label/label'
+import '../numberField/numberField'
+
 import './dropdown.scss'
 import $ from 'jQuery'
 
@@ -10,7 +13,12 @@ $( document ).ready(function() {
 		currentDropdown.height(currentDropdownWrapHeight)
 
 		currentDropdownHead.click(() => {
-			currentDropdown.toggleClass('dropdown_opened')
+			if(currentDropdown.hasClass('dropdown_opened')) {
+				currentDropdown.removeClass('dropdown_opened')
+			} else {
+				$('.dropdown_opened').removeClass('dropdown_opened')
+				currentDropdown.addClass('dropdown_opened')
+			}
 		})
 	})
 })

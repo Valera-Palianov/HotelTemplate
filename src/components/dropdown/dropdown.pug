@@ -1,4 +1,5 @@
 include ../label/label
+include ../numberField/numberField
 
 mixin dropdown(options = {})
 	+label(options.label, options.additionalLabel)
@@ -9,11 +10,9 @@ mixin dropdown(options = {})
 					div.dropdown__icon
 						i.fas.fa-chevron-down
 				div.dropdown__body
-					div Content
-					div Content
-					div Content
+					+dropdown__item()
 						
 
 mixin dropdown__item()
 	div.dropdown__item
-		block
+		+numberField()

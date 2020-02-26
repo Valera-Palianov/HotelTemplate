@@ -1,0 +1,25 @@
+extends ../base/base
+
+include ../../components/section/section
+include ../../components/roomSelector/roomSelector
+
+block title
+	| Cards
+
+block main
+	+section({removeBg: true})
+		+section__row({grid:true, template: 'auto'})
+			+section__column()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()
+			+section__column()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()
+				+section__item()
+					+roomSelector()

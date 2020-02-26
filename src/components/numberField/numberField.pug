@@ -1,0 +1,7 @@
+mixin numberField()
+	div.numberField
+		div
+			button(type='button').numberField__button.numberField__button_down -
+		input(type='number', readonly=true, value=0, min=0, max=9, step=1).numberField__input
+		div
+			button(type='button').numberField__button.numberField__button_up +

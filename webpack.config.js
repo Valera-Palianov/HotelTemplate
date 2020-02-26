@@ -15,34 +15,44 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin') //Сжимает JS
 HTML файлы (в данном случае в формате pug), загоняем их в массив, и создаем по экземпляру html-webpack-plugin на каждую*/
 
 const pages = []
+const chunks = {
+	'main' : './index.js'
+}
 fs.readdirSync(path.resolve(__dirname, 'src', 'pages')).filter((file) => {
 	return file.indexOf('base') !== 0;
 }).forEach((file) => {
 	pages.push(file.split('/', 2));
 })
 
-const htmlPlugins = pages.map(fileName => new HtmlWebpackPlugin({
-	getData: () => {
-		try {
-			return JSON.parse(fs.readFileSync(`./pages/${fileName}/data.json`, 'utf8'))
-		} catch (e) {
-			console.warn(`data.json was not provided for page ${fileName}`)
-      		return {}
-		}
-	},
-	filename: `${fileName}.html`,
-	template: `./pages/${fileName}/${fileName}.pug`,
-	inject: 'body',
-	hash: true,
-}))
+const htmlPlugins = pages.map(fileName => {
+	const conf = {
+		filename: `${fileName}.html`,
+		template: `./pages/${fileName}/${fileName}.pug`,
+		inject: 'body',
+		hash: true,
+	}
+	if(fs.existsSync(path.resolve(__dirname, 'src', `./pages/${fileName}/${fileName}.js`))) {
+		chunks[fileName] = path.resolve(__dirname, 'src', `./pages/${fileName}/${fileName}.js`)
+		conf.chunks = [fileName.toString(), 'main', 'vendors']
+	}
+
+	return new HtmlWebpackPlugin(conf)
+})
 
 const confGeneral = {
 	confMode: process.env.NODE_ENV,
 	confResult: process.env.NODE_RESULT,
 	confDevtool: process.env.NODE_ENV == 'development' ? 'source-map' : '',
-	confEntry: './index.js',
+	confEntry: chunks,
 	confContext: path.resolve(__dirname, 'src')
 }
+
+const confResolve = {
+	alias: {
+		ROOT: path.resolve(__dirname, 'src/'),
+	}
+}
+
 const confOutput = {
 	filename: 'assets/js/[name].bundle.js?[hash]',
 	path: path.resolve(__dirname, 'dist'),
@@ -51,11 +61,18 @@ const confOutput = {
 
 const getOptimization = (mode = confGeneral.confMode) => {
 	optimization = {}
-	if(mode == "production") {
-
-		optimization.splitChunks = {
-			chunks: 'all'
+	optimization.splitChunks = {
+		chunks: 'all',
+		cacheGroups: {
+			vendor: {
+				name: 'vendors',
+				test: /node_modules/,
+				chunks: 'all',
+				enforce: true,
+			}
 		}
+	}
+	if(mode == "production") {
 		optimization.minimizer = [
 			new UglifyJsPlugin(
 				{
@@ -70,7 +87,13 @@ const getOptimization = (mode = confGeneral.confMode) => {
 }
 
 const getPlugins = (result = confGeneral.confResult) => {
-	const plugins = []
+	const plugins = [
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery',
+		})
+	]
 	if(result == "build") {
 		plugins.push(
 			new CleanWebpackPlugin()
@@ -114,7 +137,12 @@ const getCssRule = (result = confGeneral.confResult) => {
 }
 const getScssRule = (mode = confGeneral.confMode, defaultLoaders = getCssRule()) => {
 	const loaders = defaultLoaders
-	loaders.push('sass-loader')
+	loaders.push({
+		loader: 'sass-loader',
+		options: {
+			sourceMap: mode == "development" ? true : false,
+		}
+	})
 	if(mode == "development") {
 		loaders.push(
 			{
@@ -188,6 +216,7 @@ const confModule = {
 					loader: 'file-loader',
 					options: {
 				        name: '/assets/fonts/[name].[ext]?[hash]',
+				        publicPath: '../../',
 				    }
 				}
 			]
@@ -210,6 +239,7 @@ const conf = {
 	mode: confGeneral.confMode,
 	output: confOutput,
 	module: confModule,
+	resolve: confResolve,
 	plugins: confPlugins,
 	optimization: confOptimization,
 	devServer: confDevServer
