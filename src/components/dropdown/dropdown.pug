@@ -1,18 +1,13 @@
 include ../label/label
-include ../numberField/numberField
+include ../option/option
 
 mixin dropdown(options = {})
 	+label(options.label, options.additionalLabel)
-		div.dropdown
-			div.dropdown__wrap.input-like
-				div.dropdown__head
-					div.dropdown__value Some Text
-					div.dropdown__icon
+		.dropdown
+			.dropdown__wrap.input-like
+				.dropdown__head
+					.dropdown__value Some Text
+					.dropdown__icon
 						i.fas.fa-chevron-down
-				div.dropdown__body
-					+dropdown__item()
-						
-
-mixin dropdown__item()
-	div.dropdown__item
-		+numberField()
+				.dropdown__body
+					+option()

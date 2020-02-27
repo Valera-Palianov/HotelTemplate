@@ -15,15 +15,19 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin') //Сжимает JS
 HTML файлы (в данном случае в формате pug), загоняем их в массив, и создаем по экземпляру html-webpack-plugin на каждую*/
 
 const pages = []
+
+//Переменная с будующим списком чанков. Пока есть только основной, который нужен на всех страницах.
 const chunks = {
 	'main' : './index.js'
 }
+//Цикл в котором просматриваются все директории в pages
 fs.readdirSync(path.resolve(__dirname, 'src', 'pages')).filter((file) => {
 	return file.indexOf('base') !== 0;
 }).forEach((file) => {
 	pages.push(file.split('/', 2));
 })
 
+//Цикл, где на каждый файл pug в директории (с тем же именем) создается экземпляр html-webpack-plugin
 const htmlPlugins = pages.map(fileName => {
 	const conf = {
 		filename: `${fileName}.html`,
@@ -31,6 +35,9 @@ const htmlPlugins = pages.map(fileName => {
 		inject: 'body',
 		hash: true,
 	}
+
+	//Если в директории лежит еще и js файл с тем же именем, то мы добавляем его как новую точку входа webpack (создаем чанк), и тут же говорим 
+	//html-webpack-plugin чтобы он подключал его в текущую страницу, вместе с основным чанком и чанком библиотек vendors
 	if(fs.existsSync(path.resolve(__dirname, 'src', `./pages/${fileName}/${fileName}.js`))) {
 		chunks[fileName] = path.resolve(__dirname, 'src', `./pages/${fileName}/${fileName}.js`)
 		conf.chunks = [fileName.toString(), 'main', 'vendors']
@@ -40,11 +47,11 @@ const htmlPlugins = pages.map(fileName => {
 })
 
 const confGeneral = {
-	confMode: process.env.NODE_ENV,
-	confResult: process.env.NODE_RESULT,
-	confDevtool: process.env.NODE_ENV == 'development' ? 'source-map' : '',
-	confEntry: chunks,
-	confContext: path.resolve(__dirname, 'src')
+	mode: process.env.NODE_ENV,
+	result: process.env.NODE_RESULT,
+	devtool: process.env.NODE_ENV == 'development' ? 'source-map' : '',
+	entry: chunks,
+	context: path.resolve(__dirname, 'src')
 }
 
 const confResolve = {
@@ -59,7 +66,7 @@ const confOutput = {
 	chunkFilename: 'assets/js/[name].bundle.js?[hash]',
 }
 
-const getOptimization = (mode = confGeneral.confMode) => {
+const getOptimization = (mode = confGeneral.mode) => {
 	optimization = {}
 	optimization.splitChunks = {
 		chunks: 'all',
@@ -86,7 +93,7 @@ const getOptimization = (mode = confGeneral.confMode) => {
 	return optimization
 }
 
-const getPlugins = (result = confGeneral.confResult) => {
+const getPlugins = (result = confGeneral.result) => {
 	const plugins = [
 		new webpack.ProvidePlugin({
 			$: 'jquery',
@@ -113,7 +120,7 @@ const getPlugins = (result = confGeneral.confResult) => {
 	return plugins
 }
 
-const getCssRule = (result = confGeneral.confResult) => {
+const getCssRule = (result = confGeneral.result) => {
 	const loaders = []
 	if(result == "build") {
 		loaders.push(MiniCssExtractPlugin.loader)
@@ -135,7 +142,7 @@ const getCssRule = (result = confGeneral.confResult) => {
 	)
 	return loaders
 }
-const getScssRule = (mode = confGeneral.confMode, defaultLoaders = getCssRule()) => {
+const getScssRule = (mode = confGeneral.mode, defaultLoaders = getCssRule()) => {
 	const loaders = defaultLoaders
 	loaders.push({
 		loader: 'sass-loader',
@@ -165,7 +172,7 @@ const getScssRule = (mode = confGeneral.confMode, defaultLoaders = getCssRule())
 	return loaders
 }
 
-const getDevServer = (result = confGeneral.confResult, port = process.env.PORT) => {
+const getDevServer = (result = confGeneral.result, port = process.env.PORT) => {
 	devServer = {}
 	if(result == "server") {
 		devServer.inline = true
@@ -233,10 +240,10 @@ const confModule = {
 }
 
 const conf = {
-	context: confGeneral.confContext,
-	entry: confGeneral.confEntry,
-	devtool: confGeneral.confDevtool,
-	mode: confGeneral.confMode,
+	context: confGeneral.context,
+	entry: confGeneral.entry,
+	devtool: confGeneral.devtool,
+	mode: confGeneral.mode,
 	output: confOutput,
 	module: confModule,
 	resolve: confResolve,

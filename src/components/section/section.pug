@@ -9,7 +9,7 @@ mixin section(options = {})
 		classes += options.grid ? ' '+classBase+'_grid' : ''
 		classes += options.removeBg ? ' '+classBase+'_remove-bg' : ''
 
-	div.section(class=classes)
+	.section(class=classes)
 		block
 
 mixin section__row(options = {})
@@ -23,7 +23,7 @@ mixin section__row(options = {})
 		classes += options.grid ? ' '+classBase+'_grid' : ''
 		classes += options.template ? ' '+classBase+'_template_'+options.template : ''
 
-	div.section__row(class=classes)
+	.section__row(class=classes)
 		block
 
 mixin section__column(options = {})
@@ -32,7 +32,7 @@ mixin section__column(options = {})
 		let classBase = 'section__column'
 		classes += options.gap ? ' '+classBase+'_gap_'+options.gap : ''
 
-	div.section__column(class=classes)
+	.section__column(class=classes)
 		block
 
 mixin section__item(options = {})
@@ -42,5 +42,5 @@ mixin section__item(options = {})
 
 		classes += options.margin ? ' '+classBase+'_margin_'+options.margin : ''
 
-	div.section__item(class=classes)
+	.section__item(class=classes)
 		block
