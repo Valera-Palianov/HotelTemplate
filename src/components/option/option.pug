@@ -1,7 +1,29 @@
-mixin option()
-	.option
-		.option__heading Heading
+mixin option(options = {})
+	-
+		const heading = options.heading ? options.heading : 'Опция'
+		const min = options.min ? options.min : 0
+		const max = options.max ? options.max : 9
+		const step = options.step ? options.step : 1
+		const value = options.value ? options.value : 0
+		const classes = options.dropdownOption ? 'dropdown__option' : ''
+		const name = options.name ? options.name : 'option'
+
+		const itemName = options.itemName ? options.itemName : 'Элементов'
+		const itemNameSingular = options.itemNameSingular ? options.itemNameSingular : 'Элемент'
+		const itemNamePlural = options.itemNamePlural ? options.itemNamePlural : 'Элемента'
+
+	.option(
+		data-min=min,
+		data-max=max,
+		data-step=step,
+		data-item-name=itemName,
+		data-item-name-singular=itemNameSingular,
+		data-item-name-plural=itemNamePlural,
+		class=classes)
+
+		input(type='hidden', value=value, name=name)
+		.option__heading=heading
 		.option__counter
 			.option__button.option__button_decrement -
-			input(type='number', readonly=true).option__display
+			.option__display=value
 			.option__button.option__button_increment +

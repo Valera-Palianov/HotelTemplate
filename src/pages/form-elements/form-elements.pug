@@ -3,6 +3,7 @@ extends ../base/base
 include ../../components/section/section
 include ../../components/textField/textField
 include ../../components/dropdown/dropdown
+include ../../components/option/option
 
 block title
 	| Form Elements
@@ -30,6 +31,39 @@ block main
 					+dropdown({
 						label: 'Dropdown',
 						additionalLabel: 'default',
+						defaultValue: 'Гости',
+						options: [
+							{
+								heading: "Взрослые",
+								value: 0,
+								min: 0,
+								max: 9,
+								name: "adults",
+								itemNameSingular: 'Взрослый',
+								itemNamePlural: 'Взрослых',
+								itemName: 'Взрослых'
+							},
+							{
+								heading: "Дети",
+								value: 0,
+								min: 0,
+								max: 9,
+								name: "childrens",
+								itemNameSingular: 'Ребенок',
+								itemNamePlural: 'Ребенка',
+								itemName: 'Детей'
+							},
+							{
+								heading: "Младенцы",
+								value: 0,
+								min: 0,
+								max: 9,
+								name: "babies",
+								itemNameSingular: 'Младенец',
+								itemNamePlural: 'Младенца',
+								itemName: 'Младенцев'
+							}
+						]
 					})
 				+section__item()
 					+textField({
@@ -39,9 +73,4 @@ block main
 						additionalLabel: 'default'
 					})
 				+section__item()
-					+textField({
-						type: 'email',
-						placeholder: 'Email',
-						label: 'Text Field',
-						additionalLabel: 'default'
-					})
+					+option()

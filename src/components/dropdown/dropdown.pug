@@ -6,8 +6,22 @@ mixin dropdown(options = {})
 		.dropdown
 			.dropdown__wrap.input-like
 				.dropdown__head
-					.dropdown__value Some Text
+					.dropdown__value= options.defaultValue ? options.defaultValue : 'Выберите'
 					.dropdown__icon
 						i.fas.fa-chevron-down
 				.dropdown__body
-					+option()
+					each option in options.options
+						+option({
+							dropdownOption: true,
+							heading: option.heading,
+							value: option.value,
+							min: option.min,
+							max: option.max,
+							name: option.name,
+							itemNameSingular: option.itemNameSingular,
+							itemNamePlural: option.itemNamePlural,
+							itemName: option.itemName
+						})
+					.dropdown__buttons
+						.dropdown__button.dropdown__button_reset Очистить
+						.dropdown__button.dropdown__button_apply Применить

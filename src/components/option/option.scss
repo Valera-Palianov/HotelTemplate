@@ -1,0 +1,52 @@
+@import 'ROOT/variables.scss';
+
+.option {
+	display:flex;
+	justify-content: space-between;
+	align-items:center;
+	
+	&__heading {
+		font-family: 'Montserrat Bold';
+		font-size: 12px;
+		text-transform: uppercase;
+	}
+
+	&__counter {
+		max-width: 92px;
+		display:flex;
+		justify-content: space-between;
+		align-items:center;
+	}
+
+	&__display {
+		font-family: 'Montserrat Bold';
+    	font-size: 12px;
+    	width: 30px;
+    	text-align:center;
+    	user-select: none;
+	}
+
+	&__button {
+		width: 30px;
+		height: 30px;
+		border-radius: 100%;
+		font-size: 18px;
+		line-height: 30px;
+		text-align: center;
+		user-select: none;
+		border: 1px solid $dark-shade-50;
+		color: $dark-shade-50;
+		transition: 0.2s;
+		cursor:pointer;
+
+		&:hover:not(&_disabled) {
+			border-color: $dark-shade;
+			color: $dark-shade;
+		}
+		&_disabled {
+			border-color: $dark-shade-25;
+			color: $dark-shade-25;
+			cursor:default;
+		}
+	}
+}

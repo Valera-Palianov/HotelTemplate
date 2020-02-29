@@ -3,6 +3,33 @@
 .dropdown {
 	position:relative;
 	cursor:pointer;
+	
+	&__buttons {
+		display:flex;
+		justify-content: space-between;
+		margin-top:20px;
+	}
+
+	&__button {
+		font-family: 'Montserrat Bold';
+		font-size: 12px;
+		text-transform: uppercase;
+		color: $dark-shade-50;
+		cursor:pointer;
+		transition:0.2s;
+
+		&:hover {
+			color: $dark-shade-75;
+		}
+
+		&_apply {
+			color: $purple;
+
+			&:hover {
+				color: $purple-dark;
+			}
+		}
+	}
 
 	& > .dropdown__wrap {
 		position: absolute;
@@ -22,6 +49,9 @@
 		& > .dropdown__body {
 			overflow:hidden;
 			max-height: 0px;
+			& > .dropdown__option:not(:last-child) {
+				margin-bottom:8px;
+			}
 		}
 	}
 
